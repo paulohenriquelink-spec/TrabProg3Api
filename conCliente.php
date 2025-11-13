@@ -16,20 +16,14 @@ if ($result) {
     if ($result->num_rows > 0) {
         // Coleta os dados de cada linha
         while($row = $result->fetch_assoc()) {
-            $data[] = $row;
+            $response[] = $row;
         }
-        $response['status'] = 'success';
-        $response['data'] = $data;
     } else {
         // Nenhum cliente encontrado
-        $response['status'] = 'success';
-        $response['message'] = 'Nenhum cliente encontrado.';
-        $response['data'] = [];
+        $response = [];
     }
 } else {
-    // Erro na execução da consulta
-    $response['status'] = 'error';
-    $response['message'] = 'Erro na consulta: ' . $con->error;
+     $response = [];
 }
 
 // Retorna a resposta em formato JSON
